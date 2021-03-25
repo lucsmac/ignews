@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       payment_method_types: ['card'],
       billing_address_collection: 'required',
       line_items: [
-        { price: 'price_1IYNWqFD5W4HiZBhO3n2XKkT'}
+        { price: 'price_1IYNWqFD5W4HiZBhO3n2XKkT', quantity: 1}
       ],
       mode: 'subscription',
       allow_promotion_codes: true,
@@ -23,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       cancel_url: process.env.STRIPE_CANCEL_URL
     })
 
-    return res.status(200).json({ sessionId: stripeCheckoutSessions.id })
+    return res.status(200).json({ sessionID: stripeCheckoutSessions.id })
   } else {
     res.setHeader('Allow', 'POST');
     res.status(405).end('Method not allowed')
