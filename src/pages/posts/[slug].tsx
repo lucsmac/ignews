@@ -5,6 +5,11 @@ import { getPrismicClient } from "../../services/prismic"
 import Head from 'next/head'
 
 import styles from './post.module.scss'
+import { Session } from "next-auth"
+
+interface SessionProps extends Session {
+  activeSubscription: object | null;
+}
 
 interface PostProps {
   post: {
@@ -40,8 +45,18 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
   const session = await getSession({ req })
   const { slug } = params
 
+  if(!session.activeSubscription as unknown) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      }
+    }
+  }
+
   const prismic = getPrismicClient(req)
   const response = await prismic.getByUID('post', String(slug), {})
+  
   const post = {
     slug, 
     title: RichText.asText(response.data.title),

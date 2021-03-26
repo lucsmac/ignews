@@ -6,25 +6,30 @@
 
 .post {
   max-width: 720px;
-  margin: 5rem auto;
+  margin: 5rem auto 7rem;
 
   h1 {
     font-size: 3.5rem;
     font-weight: 900;
+    line-height: 1;
   }
 
   time {
-    font-size: 1rem;
+    font-size: .9rem;
     color: var(--gray-300);
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     display: block;
   }
 
   .postContent {
-    margin-top: 2rem;
+    margin-top: 3rem;
     line-height: 2rem;
     font-size: 1.125rem;
     color: var(--gray-100);
+
+    img {
+      max-width: 100%;
+    }
 
     p, ul {
       margin: 1.5rem 0;
