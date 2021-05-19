@@ -5,10 +5,9 @@ import { useRouter } from 'next/router'
 interface ActiveLinkProps extends LinkProps {
   children: ReactElement;
   activeClassName: string;
-  activeURL: string[];
 }
 
-export function ActiveLink({ children, activeClassName, activeURL, ...rest }: ActiveLinkProps) {
+export function ActiveLink({ children, activeClassName, ...rest }: ActiveLinkProps) {
   const { asPath } = useRouter()
   
   const className = asPath === rest.href
